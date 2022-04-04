@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('partials/head') %>
+<body>
+
+<div id="wrapper">
+    <%- include('partials/header') %>
+
+    <section class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <hr>
+                <h1>Add A New Book</h1>
+                <hr>
+            </div>
+        </div>
+        <form id="addBooksForm">
+            <div class="row">
+                <div class="col-md-7">
+                    <div class="row" >
+                        <div class="col-lg-6">
+                            <label for="title">Book Title</label>
+                            <input type="text" id="title" class="form-control" required>
+                        </div>
+                        <div class="col-lg-6">
+                            <label for="author">Author Name</label>
+                            <input type="text" id="author" class="form-control" required>
+                        </div>
+                        <div class="col-lg-6">
+                            <label for="genre">Book Genre</label>
+                            <select id="genre" class="form-control" required>
+								<option value="" hidden></option>
+								<option value="Novella">Novella</option>
+								<option value="Romance">Romance</option>
+								<option value="Fantasy">Fantasy</option>
+								<option value="Mystery">Mystery</option>
+                                <option value="Comedy">Comedy</option>
+                                <option value="Adventure">Adventure</option>
+								<option value="Drama">Drama</option>
+								<option value="Allegory">Allegory</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <input type="file" id="img" onchange="displayImg()" required>
+                    <label for="img" class="btn" id="customFileBtn">Upload Book Image</label>
+                    <br>
+                    <label for="img">
+                        <div id="imgDisplay"></div>
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <button type="submit" class="btn btn-success">Submit Book</button>
+                </div>
+            </div>
+        </form>
+    </section>
+</div>
+    
+    <%- include('partials/footer') %>
+</body>
+</html>

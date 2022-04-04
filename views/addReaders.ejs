@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('partials/head') %>
+<body>
+<div id="wrapper">
+    <%- include('partials/header') %>
+
+    <section class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <hr>
+                <h1>Add A New Reader</h1>
+                <hr>
+            </div>
+        </div>
+        <form id="addReadersForm">
+            <div class="row">
+                <div class="col-md-6">
+					<label for="first_name">First Name</label>
+					<input type="text" id="first_name" class="form-control" required>
+					<label for="last_name">Last Name</label>
+					<input type="text" id="last_name" class="form-control" required>
+                </div>
+                <div class="col-md-6">
+					<label for="email">Email Address</label>
+					<input type="text" id="email" class="form-control" required>
+					<label for="phone_number">Phone Number</label>
+					<input type="text" id="phone_number" class="form-control" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <button class="btn btn-success">Submit Reader</button>
+                </div>
+            </div>
+        </form>
+    </section>
+</div>
+
+    <%- include('partials/footer') %>
+</body>
+</html>

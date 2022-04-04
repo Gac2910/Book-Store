@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('partials/head') %>
+<body>
+<div id="wrapper">
+    <%- include('partials/header') %>
+
+    <section class="container">
+        <div class="row">
+            <div class="col-sm-12">
+				<% if (readers === undefined || readers.length === 0) { %>
+					<hr>
+					<h1>No Readers Found</h1>
+					<hr>
+					<a href="addReaders">
+						<button class="btn btn-primary">Add A New Reader</button>
+					</a>
+				<% } else { %>
+					<!-- build the table here -->
+					<hr>
+					<h1>All Our Readers</h1>
+					<hr>
+					<table>
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Email</th>
+								<th>Phone</th>
+								<th>Actions</th>
+							</tr>
+						</thead>
+						<tbody id="dataTable">
+							<% for (let i = 0; i < readers.length; i++) { %>
+								<tr>
+									<td><%= readers[i].first_name %> <%= readers[i].last_name %></td>
+									<td><%= readers[i].email %></td>
+									<td><%= readers[i].phone_number %></td>
+									<td>
+										<i onclick="deleteReader('<%= readers[i].reader_id %>')" class="fa fa-trash" style="font-size:36px"></i>
+										<i onclick="updateReader('<%= readers[i].reader_id %>')" class="fa fa-refresh" style="font-size:36px"></i>
+									</td>
+								</tr>
+							<% }; %>
+						</tbody>
+					</table>
+				<% }; %>
+            </div>
+        </div>
+    </section>
+</div>
+
+    <%- include('partials/footer') %>
+</body>
+</html>

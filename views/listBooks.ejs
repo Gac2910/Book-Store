@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('partials/head') %>
+<body>
+    
+<div id="wrapper">
+    <%- include('partials/header') %>
+	<section class="container">
+		<div class="row">
+            <div class="col-sm-12">
+				<hr>
+				<h1>Browse Our Library</h1>
+				<hr>
+            </div>
+		</div>
+	</section>
+    <section class="container-fluid" style="margin: 25px auto;">
+		<div class="row">
+			<div class="col-lg-3" id="infoCol">
+				<div class="row" id="infoRow">
+					<div class="col-sm-6">
+						<h4>Genres</h4>
+						<ul id="genreNavList" style="list-style-position: inside;">
+							<li>Novella</li>
+							<li>Romance</li>
+							<li>Fantasy</li>
+							<li>Mystery</li>
+							<li>Comedy</li>
+							<li>Adventure</li>
+							<li>Drama</li>
+							<li>Allegory</li>
+						</ul>
+					</div>
+					<div class="col-sm-6">
+						<h4>Information</h4>
+						<p>Here you can view, delete or update the books. If you want to loan a book click here.</p>
+						<a href="addLoans"><button class="btn btn-primary">Add a Loan</button></a>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-8" id="listBooks">
+				<% if (books === undefined || books.length === 0) { %>
+					<hr>
+					<h1>No Books Found</h1>
+					<hr>
+					<a href="addBooks"><button class="btn btn-primary">Add A New Book</button></a>
+				<% } else { %>
+					<div class="row" id="bookCards">
+						<% for (let i = 0; i < books.length; i++) { %>
+							<% if (i % 2 == 0) { %>
+								<div class="col-lg-6">
+									<div class="row">
+										<div class="col-6" class="cardCol">
+											<div class="card">
+												<img class="card-img-top" src="\images\<%= books[i].img %>" alt="Card image cap">
+												<div class="card-body">
+													<h5 class="card-title"><%= books[i].title %></h5>
+													<p class="card-text">Author: <%= books[i].author %></p>
+													<p class="card-text">Genre: <%= books[i].genre %></p>
+													<button onclick="deleteBook('<%= books[i].book_id %>')" class="btn btn-danger">Delete</button>
+													<button onclick="updateBook('<%= books[i].book_id %>')" class="btn btn-primary">Update</button>
+												</div>
+											</div>
+										</div>
+							<% } else { %>
+										<div class="col-6" class="cardCol">
+											<div class="card">
+												<img class="card-img-top" src="\images\<%= books[i].img %>" alt="Card image cap">
+												<div class="card-body">
+													<h5 class="card-title"><%= books[i].title %></h5>
+													<p class="card-text">Author: <%= books[i].author %></p>
+													<p class="card-text">Genre: <%= books[i].genre %></p>
+													<button onclick="deleteBook('<%= books[i].book_id %>')" class="btn btn-danger">Delete</button>
+													<button onclick="updateBook('<%= books[i].book_id %>')" class="btn btn-primary">Update</button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<% }; %>
+						<% }; %>
+					</div>
+				<% }; %>
+			</div>
+		</div>
+    </section>
+</div>
+
+    <%- include('partials/footer') %>
+</body>
+</html>

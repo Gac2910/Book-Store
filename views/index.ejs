@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('partials/head') %>
+<body>
+
+<div id="wrapper">
+    <%- include('partials/header') %>
+
+    <div class="jumbotron">
+        <h1 class="display-4">Welcome To My Library App</h1>
+        <p class="lead">This app allows you to add books, readers and loans to the library database. It also allows you to view all items and to modify them.</p>
+        <hr class="my-4">
+        <p>Click here to add a book and get started.</p>
+        <p class="lead">
+          <a class="btn btn-primary btn-lg" href="addBooks" role="button">Add A Book</a>
+        </p>
+    </div>
+
+    <section class="container" style="margin: 25px auto;">
+        <div class="row">
+			<% if (books === undefined || books.length === 0) { %>
+				<hr>
+				<h2>No Books Found</h2>
+				<hr>
+			<% } else { %>
+				<hr>
+				<h2>Some Of Our Books</h2>
+				<hr>
+				<% for (let i = 0; i < 4; i++) { %>
+					<% if (i % 2 == 0) { %>
+					<div class="col-lg-6">
+						<div class="row">
+							<div class="col-6">
+								<div class="card">
+									<img class="card-img-top" src="\images\<%= books[i].img %>" alt="Card image cap">
+									<div class="card-body">
+										<h5 class="card-title"><%= books[i].title %></h5>
+										<p class="card-text">Author: <%= books[i].author %></p>
+										<p class="card-text">Genre: <%= books[i].genre %></p>
+									</div>
+								</div>
+							</div>
+					<% } else { %>
+							<div class="col-6">
+								<div class="card">
+									<img class="card-img-top" src="\images\<%= books[i].img %>" alt="Card image cap">
+									<div class="card-body">
+										<h5 class="card-title"><%= books[i].title %></h5>
+										<p class="card-text">Author: <%= books[i].author %></p>
+										<p class="card-text">Genre: <%= books[i].genre %></p>
+									</div>
+								</div>
+							</div>
+						</div>
+        			</div>
+					<% }; %>
+				<% }; %>
+			<% }; %>
+        </div>
+    </section>
+</div>
+
+    <%- include('partials/footer') %>
+</body>
+</html>

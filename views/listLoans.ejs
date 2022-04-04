@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('partials/head') %>
+<body>
+<div id="wrapper">
+    <%- include('partials/header') %>
+
+    <section class="container">
+        <div class="row">
+            <div class="col-sm-12">
+				<% if (loans === undefined || loans.length === 0) { %>
+					<hr>
+					<h1>No Readers Found</h1>
+					<hr>
+					<a href="addLoans">
+						<button class="btn btn-primary">Add A New Loan</button>
+					</a>
+				<% } else { %>
+					<hr>
+					<h1>All Loans</h1>
+					<hr>
+					<table>
+						<thead>
+							<tr>
+								<th>Loan Number</th>
+								<th>Loan Date</th>
+								<th>Return Date</th>
+								<th>Book</th>
+								<th>Reader</th>
+								<th>Actions</th>
+							</tr>
+						</thead>
+						<tbody id="dataTable">
+							<% for (let i = 0; i < loans.length; i++) { %>
+								<tr>
+									<td><%= loans[i].loan_number %></td>
+									<td><%= new Date(loans[i].loan_date).toISOString().slice(0, 10) %></td>
+									<td><%= new Date(loans[i].return_date).toISOString().slice(0, 10) %></td>
+									<td><%= loans[i].title %></td>
+									<td><%= loans[i].first_name %> <%= loans[i].last_name %></td>
+									<td>
+										<i onclick="deleteLoan('<%= loans[i].loan_id %>')" class="fa fa-trash" style="font-size:36px"></i>
+										<i onclick="updateLoan('<%= loans[i].loan_id %>')" class="fa fa-refresh" style="font-size:36px"></i>
+									</td>
+								</tr>
+							<% }; %>
+						</tbody>
+					</table>
+				<% }; %>
+            </div>
+        </div>
+    </section>
+</div>
+
+    <%- include('partials/footer') %>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+	<%- include('partials/head') %>
+<body>
+
+<div id="wrapper">
+	<%- include('partials/header') %>
+
+	<section class="container">
+		<div class="row">
+			<div class="col-sm-12">
+				<hr>
+				<h1>Loan A Book</h1>
+				<hr>
+			</div>
+		</div>
+		<% if (books === undefined || books.length === 0) { %>
+			<hr>
+			<h2>No Books Found</h2>
+			<hr>
+		<% } else { %>
+			<div class="row">
+				<% for (let i = 0; i < books.length; i++) { %>
+					<% if (i % 2 == 0) { %>
+						<div class="col-lg-6">
+							<div class="row">
+								<div class="col-6" class="cardCol">
+									<div class="card">
+										<img class="card-img-top" src="\images\<%= books[i].img %>" alt="Card image cap">
+										<div class="card-body">
+											<h5 class="card-title"><%= books[i].title %></h5>
+											<p class="card-text">Author: <%= books[i].author %></p>
+											<p class="card-text">Genre: <%= books[i].genre %></p>
+											<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loanModal" data-title="<%= books[i].title %>" data-id="<%= books[i].book_id %>">Loan This Book</button>
+										</div>
+									</div>
+								</div>
+					<% } else { %>
+						<div class="col-6" class="cardCol">
+							<div class="card">
+								<img class="card-img-top" src="\images\<%= books[i].img %>" alt="Card image cap">
+								<div class="card-body">
+									<h5 class="card-title"><%= books[i].title %></h5>
+									<p class="card-text">Author: <%= books[i].author %></p>
+									<p class="card-text">Genre: <%= books[i].genre %></p>
+									<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loanModal" data-title="<%= books[i].title %>" data-id="<%= books[i].book_id %>">Loan This Book</button>
+								</div>
+							</div>
+						</div>
+							</div>
+						</div>
+					<% }; %>
+				<% }; %>
+			</div>
+		<% }; %>
+	</section>
+</div>
+
+	<div class="modal fade" id="loanModal" tabindex="-1" role="dialog" aria-labelledby="loanModalLabel"
+		aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="loanModalLabel"></h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form>
+						<div class="form-group">
+							<label for="loan_date" class="col-form-label">Loan Date:</label>
+							<input type="date" class="form-control" id="loan_date">
+						</div>
+						<div class="form-group">
+							<label for="return_date" class="col-form-label">Return Date:</label>
+							<input type="date" class="form-control" id="return_date">
+						</div>
+						<div class="form-group">
+							<label for="reader" class="col-form-label">Select Reader:</label>
+							<select id="reader" class="form-control"></select>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button onclick="insertLoan()" type="button" class="btn btn-primary" data-bookId="" id="saveLoanBtn">Save Loan</button>
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<%- include('partials/footer') %>
+</body>
+
+</html>
